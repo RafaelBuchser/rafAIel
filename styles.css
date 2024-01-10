@@ -7,11 +7,14 @@
   --menuHeight: calc(var(--menuWidth) / 3 * 2);
   --buttonWidth: calc((var(--menuWidth) - 15px) / 2);
   --buttonHeight: calc((var(--menuHeight) - 25px) / 4);
+  --textSize: calc(var(--buttonHeight) / 4);
 
   --backgroundColor: #1f1d22;
   --headerColor: #2d2a32;
   --textColor: #edebd7;
-  --buttonColor: #e3b23c;
+  --buttonColor: #2d2a32;
+  --buttonHoverColor: #6f5d57;
+  --buttonClickedColor: #e3b23c;
   --foregroundColorDark: #171619;
   --foregroundColorMiddle: #171619;
   --foregroundColorLight: #a39594;
@@ -24,7 +27,7 @@
 
 body {
   font-family: Segoe UI;
-
+  background-color: var(--backgroundColor);
 }
 
 .header {
@@ -78,86 +81,125 @@ body {
 }
 
 .menu {
-  border-radius: 10px;
   position: absolute;
   left: calc(50% + var(--squareSize) * 4 + var(--distToBorder));
   top: calc((100vh - var(--headerHeight) - var(--menuHeight)) / 2);
   height: var(--menuHeight);
   width: var(--menuWidth);
+  padding: 5px;
   background-color: var(--foregroundColorDark);
+  display: grid;
+  border-radius: 10px;
+  grid-gap: 5px;
+}
+
+.menuBeforeGame {
+  grid-template-columns: auto auto;
+}
+
+.menuDuringGame {
+  grid-template-columns: auto auto auto auto;
 }
 
 .text {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: var(--textSize);
   font-weight: 400;
   color: var(--textColor);
 }
 
 .whiteText {
-  top: 5px;
-  left: 5px;
-  width: var(--buttonWidth);
-  height: var(--buttonHeight);
+  grid-row: 1;
+  grid-column: 1;
 }
 
 .blackText {
-  top: 5px;
-  left: calc(var(--buttonWidth) + 10px);
-  width: var(--buttonWidth);
-  height: var(--buttonHeight);
+  grid-row: 1;
+  grid-column: 2;
 }
 
 .button1 {
   border: none;
-  position: absolute;
   background-color: var(--buttonColor);
   border-radius: 6px;
-  color: var(--foregroundColorDark);
+  color: var(--textColor);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
+  font-size: var(--textSize);
   font-weight: 400;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.button1Hoverd {
+  background-color: var(--buttonHoverColor);
+  color: var(--foregroundColorDark);
+}
+
+.button1Clicked {
+  background-color: var(--buttonClickedColor);
+  color: var(--foregroundColorDark);
 }
 
 .whiteHumanBtn {
-  top: calc(var(--buttonHeight) + 10px);
-  left: 5px;
-  width: var(--buttonWidth);
-  height: var(--buttonHeight);
+  grid-row: 2;
+  grid-column: 1;
 }
 
 .blackHumanBtn {
-  top: calc(var(--buttonHeight) + 10px);
-  left: calc(var(--buttonWidth) + 10px);
-  width: var(--buttonWidth);
-  height: var(--buttonHeight);
+  grid-row: 2;
+  grid-column: 2;
 }
 
 .whiteEngineBtn {
-  top: calc(2 * var(--buttonHeight) + 15px);
-  left: 5px;
-  width: var(--buttonWidth);
-  height: var(--buttonHeight);
+  grid-row: 3;
+  grid-column: 1;
 }
 
 .blackEngineBtn {
-  top: calc(2 * var(--buttonHeight) + 15px);
-  left: calc(var(--buttonWidth) + 10px);
-  width: var(--buttonWidth);
-  height: var(--buttonHeight);
+  grid-row: 3;
+  grid-column: 2;
 }
 
 .startBtn {
-  top: calc(3 * var(--buttonHeight) + 20px);
-  left: 5px;
-  width: calc(var(--menuWidth) - 10px);
-  height: var(--buttonHeight);
+  grid-row: 4;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.toBeginningBtn {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.backBtn {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.forwarwdBtn {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.toEndBtn {
+  grid-row: 1;
+  grid-column: 4;
+}
+
+.resignBtn {
+  grid-row: 5;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.flipBoardBtn {
+  grid-row: 5;
+  grid-column-start: 3;
+  grid-column-end: 5;
 }
 
 @media screen and (max-aspect-ratio: 20/13) {
