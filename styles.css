@@ -1,0 +1,100 @@
+:root {
+  --headerHeight: 80px;
+  --distToBorder: 25px;
+  --boardSize: calc(100vh - var(--headerHeight) - 2 * var(--distToBorder));
+  --squareSize: calc(var(--boardSize) / 8);
+  --menuHeight: 200px;
+  --menuWidth: 300px;
+
+  --backgroundColor: #1f1d22;
+  --headerColor: #2d2a32;
+  --textColor: #edebd7;
+  --buttonColor: #e3b23c;
+  --foregroundColorDark: #171619;
+  --foregroundColorMiddle: #171619;
+  --foregroundColorLight: #a39594;
+  --color8: #B8860B;
+  --color9: #8B008B;
+  --color10: #2F4F4F;
+  --lightSquareColor: #b58865;
+  --darkSquareColor: #f0d9b9;
+}
+
+body {
+  font-family: Segoe UI;
+
+}
+
+.header {
+  height: var(--headerHeight);
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align:center;
+  font-size:55px;
+  font-weight:100;
+  color: var(--textColor);
+  background-color: var(--headerColor);
+
+}
+.mainDiv {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--headerHeight));
+  background-color: var(--backgroundColor);
+}
+
+.board {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: var(--distToBorder);
+  margin-bottom: var(--distToBorder);
+  width: var(--boardSize);
+  height: var(--boardSize);
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+}
+
+.blackField {
+  background-color: var(--darkSquareColor);
+  width: var(--squareSize);
+  height: var(--squareSize);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whiteField {
+  background-color: var(--lightSquareColor);
+  width: var(--squareSize);
+  height: var(--squareSize);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu {
+  border-radius: 10px;
+  position: absolute;
+  left: calc(50vw + var(--squareSize) * 4 + var(--distToBorder));
+  top: calc((100vh - var(--headerHeight) - var(--menuHeight)) / 2);
+  height: var(--menuHeight);
+  width: var(--menuWidth);
+  background-color: var(--foregroundColorDark);
+}
+
+.button {
+  left: 50px;
+  top: 50px;
+  background-color: var(--buttonColor);
+  border-radius: 10px;
+  color: var(--foregroundColorDark);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  height: 50px;
+  width: 80px;
+}
