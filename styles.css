@@ -1,6 +1,6 @@
 :root  {
   --headerHeight: 90px;
-  --distToBorder: 25px;
+  --distToBorder: 10px;
   --boardSize: 100vw;
   --squareSize: calc(var(--boardSize) / 8);
   --menuWidth: calc(100vw - 2 * var(--distToBorder));
