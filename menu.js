@@ -28,7 +28,9 @@ var flipBoardBtn = null;
 var resignBtn = null;
 var gameLog = null;
 var inGame = false;
-
+var boardFlipped = false;
+var currentMoveSelected = -1;
+var currentNumberOfLogEntries = 0;
 
 
 // AFTER GAME MENU
@@ -38,8 +40,6 @@ function setUpStartingMenu() {
   beforeGame = true;
   whiteSelected = false;
   blackSelected = false;
-
-  menu.className = "menu menuBeforeGame";
 
   whiteText = document.createElement("div");
   whiteText.className = "text whiteText";
@@ -292,7 +292,7 @@ function setUpMenuDuringGame() {
   resignBtn = document.createElement("button");
   resignBtn.className = "button1 resignBtn";
   menu.appendChild(resignBtn);
-  resignBtn.textContent = "RESIGN";
+  resignBtn.textContent = "🏳";
   resignBtn.addEventListener("click", clickResign);
   resignBtn.addEventListener("mouseover", hoverResign);
   resignBtn.addEventListener("mouseleave", leaveResign);
@@ -304,7 +304,16 @@ function setUpMenuDuringGame() {
   flipBoardBtn.addEventListener("click", clickFlipBoard);
   flipBoardBtn.addEventListener("mouseover", hoverFlipBoard);
   flipBoardBtn.addEventListener("mouseleave", leaveFlipBoard);
+
+  gameLog = document.createElement("div");
+  gameLog.className = "gameLog";
+  menu.appendChild(gameLog);
+
+  var log = ["e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6", "d3", "Bc5", "O-O", "d6", "Nc3", "O-O"];
+  updateLog(log);
 }
+
+
 
 function hoverToBeginning() {
   if (inGame){
@@ -397,21 +406,97 @@ function clickResign() {
 
 function hoverFlipBoard() {
   if (inGame){
-    flipBoardBtn.className = "button1 flipBoardBtn button1Hoverd";
+    if (!boardFlipped){
+      flipBoardBtn.className = "button1 flipBoardBtn button1Hoverd";
+    }
   }
 }
 
 function leaveFlipBoard() {
   if (inGame) {
-    flipBoardBtn.className = "button1 flipBoardBtn";
+    if (!boardFlipped) {
+      flipBoardBtn.className = "button1 flipBoardBtn";
+    }
   }
 }
 
 function clickFlipBoard() {
   if (inGame) {
+    if (boardFlipped){
+      boardFlipped = false;
+      flipBoardBtn.className = "button1 flipBoardBtn";
+    } else {
+      boardFlipped = true;
+      flipBoardBtn.className = "button1 flipBoardBtn button1Clicked";
+    }
+  }
+}
+
+function hoverLogEntry(evt) {
+  if (inGame){
+    if (currentMoveSelected != evt.currentTarget.moveIndex) {
+      evt.currentTarget.className = "logEntry logEntryHovered";
+    }
+  }
+}
+
+function leaveLogEntry(evt) {
+  if (inGame) {
+    if (currentMoveSelected != evt.currentTarget.moveIndex) {
+      evt.currentTarget.className = "logEntry";
+    }
+  }
+}
+
+function clickLogEntry(evt) {
+  if (inGame) {
+    old = document.getElementById("log" + String(currentMoveSelected));
+    old.className = "logEntry";
+    evt.currentTarget.className = "logEntry logEntryClicked";
+    currentMoveSelected = evt.currentTarget.moveIndex;
 
   }
 }
+
+function updateLog(log){
+  for (let i = currentNumberOfLogEntries; i < log.length; i++){
+    let row = Math.floor(i / 2) + 1;
+    let entry = document.createElement("div");
+    entry.className = "logEntry";
+    entry.textContent = log[i];
+    entry.style.gridRow = row;
+
+    entry.moveIndex = i;
+    gameLog.appendChild(entry);
+    entry.id = "log" + String(i);
+    entry.addEventListener("click", clickLogEntry);
+    entry.addEventListener("mouseover", hoverLogEntry);
+    entry.addEventListener("mouseleave", leaveLogEntry);
+
+    if (i % 2 == 0) {
+      let logNumber = document.createElement("div");
+      logNumber.className = "logNumber";
+      logNumber.textContent = String(row);
+      logNumber.style.gridRow = row;
+      logNumber.style.gridColumn = 1;
+      gameLog.appendChild(logNumber);
+
+      entry.style.gridColumn = 2;
+    } else {
+      entry.style.gridColumn = 3;
+    }
+  }
+  if (currentNumberOfLogEntries < log.length){
+    currentNumberOfLogEntries = log.length;
+    if (currentMoveSelected != -1){
+      document.getElementById("log" + String(currentMoveSelected)).className = "logEntry";
+    }
+    currentMoveSelected = currentNumberOfLogEntries - 1;
+    document.getElementById("log" + String(currentMoveSelected)).className = "logEntry logEntryClicked";
+    gameLog.scrollTop = 10000000;
+  }
+}
+
 
 function deleteMenuDuringGame() {
 
