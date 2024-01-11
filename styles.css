@@ -1,13 +1,13 @@
 :root  {
-  --headerHeight: 150px;
+  --headerHeight: 90px;
   --distToBorder: 25px;
   --boardSize: 100vw;
   --squareSize: calc(var(--boardSize) / 8);
   --menuWidth: calc(100vw - 2 * var(--distToBorder));
   --menuHeight: calc(var(--menuWidth) / 3 * 2);
-  --textSize: 50px;
-  --titleSize: 100px;
-  --logEntryHeight: 70px;
+  --textSize: 20px;
+  --titleSize: 65px;
+  --logEntryHeight: 35px;
 
   --backgroundColor: #1f1d22;
   --headerColor: #2d2a32;
@@ -65,7 +65,7 @@ body::-webkit-scrollbar {
   grid-template-columns: auto auto auto auto auto auto auto auto;
 }
 
-.blackField {
+.blackSquare {
   background-color: var(--darkSquareColor);
   width: var(--squareSize);
   height: var(--squareSize);
@@ -74,7 +74,7 @@ body::-webkit-scrollbar {
   justify-content: center;
 }
 
-.whiteField {
+.whiteSquare {
   background-color: var(--lightSquareColor);
   width: var(--squareSize);
   height: var(--squareSize);
@@ -239,9 +239,14 @@ body::-webkit-scrollbar {
   color: var(--textColor);
 }
 
-.logEntryClicked{
+.logEntryClicked {
   background-color: var(--buttonClickedColor);
   color: var(--foregroundColorDark);
+}
+
+.chessPiece {
+  height: var(--squareSize);
+  width: var(--squareSize);
 }
 
 
