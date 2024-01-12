@@ -23,7 +23,7 @@
 }
 
 body {
-  font-family: Segoe UI;
+  font-family: Segoe UI, Verdana, sans-serif;
   background-color: var(--backgroundColor);
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -39,9 +39,11 @@ body::-webkit-scrollbar {
   position: absolute;
   left: 0;
   top: 0;
-  text-align:center;
+  text-align: center;
+  font-family: Segoe UI;
+
   font-size: var(--titleSize);
-  font-weight:100;
+  font-weight: 100;
   color: var(--textColor);
   background-color: var(--headerColor);
 }
@@ -51,6 +53,7 @@ body::-webkit-scrollbar {
   top: var(--headerHeight);
   left: 0;
   width: 100%;
+  height: calc(100vh - var(--headerHeight));
   display: flex;
   justify-content: center;
 }
@@ -106,16 +109,6 @@ body::-webkit-scrollbar {
   color: var(--textColor);
 }
 
-.whiteText {
-  grid-row: 1;
-  grid-column: 1;
-}
-
-.blackText {
-  grid-row: 1;
-  grid-column: 2;
-}
-
 .button1 {
   border: none;
   background-color: var(--buttonColor);
@@ -138,64 +131,6 @@ body::-webkit-scrollbar {
 .button1Clicked {
   background-color: var(--buttonClickedColor);
   color: var(--foregroundColorDark);
-}
-
-.whiteHumanBtn {
-  grid-row: 2;
-  grid-column: 1;
-}
-
-.blackHumanBtn {
-  grid-row: 2;
-  grid-column: 2;
-}
-
-.whiteEngineBtn {
-  grid-row: 3;
-  grid-column: 1;
-}
-
-.blackEngineBtn {
-  grid-row: 3;
-  grid-column: 2;
-}
-
-.startBtn {
-  grid-row: 4;
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-.toBeginningBtn {
-  grid-row: 1;
-  grid-column: 1;
-}
-
-.backBtn {
-  grid-row: 1;
-  grid-column: 2;
-}
-
-.forwarwdBtn {
-  grid-row: 1;
-  grid-column: 3;
-}
-
-.toEndBtn {
-  grid-row: 1;
-  grid-column: 4;
-}
-
-.resignBtn {
-  grid-row: 5;
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-.flipBoardBtn {
-  grid-row: 5;
-  grid-column-start: 3;
-  grid-column-end: 5;
 }
 
 .gameLog {
@@ -241,6 +176,18 @@ body::-webkit-scrollbar {
 .logEntryClicked {
   background-color: var(--buttonClickedColor);
   color: var(--foregroundColorDark);
+}
+
+.gameOverMessage {
+  grid-row: 4;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  color: var(--textColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--textSize);
+  font-weight: 400;
 }
 
 .chessPiece {

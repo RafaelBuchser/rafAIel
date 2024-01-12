@@ -10,6 +10,8 @@ const rook = 4;
 const queen = 5;
 const king = 6;
 
+
+
 function createBoard(){
   let color = "black";
   for (let row=0; row<8; row++){
