@@ -40,7 +40,7 @@ body::-webkit-scrollbar {
   left: 0;
   top: 0;
   text-align: center;
-  font-family: Segoe UI, Arial;
+  font-family: Segoe UI, System-UI, Gill Sans;
   font-size: var(--titleSize);
   font-weight: 100;
   color: var(--textColor);
